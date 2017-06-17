@@ -12,6 +12,10 @@
 		9C6068131EF52E9900681583 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6068111EF52E9900681583 /* Main.storyboard */; };
 		9C6068151EF52E9900681583 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C6068141EF52E9900681583 /* Assets.xcassets */; };
 		9C6068181EF52E9900681583 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6068161EF52E9900681583 /* LaunchScreen.storyboard */; };
+		9C6068251EF5308800681583 /* LazyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6068211EF5308800681583 /* LazyTableView.swift */; };
+		9C6068261EF5308800681583 /* LazyTableView_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6068221EF5308800681583 /* LazyTableView_Cell.swift */; };
+		9C6068271EF5308800681583 /* LazyTableView_Default_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6068231EF5308800681583 /* LazyTableView_Default_Data.swift */; };
+		9C6068281EF5308800681583 /* LazyTableView_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6068241EF5308800681583 /* LazyTableView_Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		9C6068141EF52E9900681583 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C6068171EF52E9900681583 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C6068191EF52E9900681583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C6068211EF5308800681583 /* LazyTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyTableView.swift; sourceTree = "<group>"; };
+		9C6068221EF5308800681583 /* LazyTableView_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyTableView_Cell.swift; sourceTree = "<group>"; };
+		9C6068231EF5308800681583 /* LazyTableView_Default_Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyTableView_Default_Data.swift; sourceTree = "<group>"; };
+		9C6068241EF5308800681583 /* LazyTableView_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyTableView_Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				9C60681F1EF52EAA00681583 /* Project */,
+				9C6068201EF5308800681583 /* LazyTable */,
 				9C60680F1EF52E9900681583 /* ViewController.swift */,
 				9C6068111EF52E9900681583 /* Main.storyboard */,
 			);
@@ -71,6 +80,17 @@
 			);
 			name = Project;
 			sourceTree = "<group>";
+		};
+		9C6068201EF5308800681583 /* LazyTable */ = {
+			isa = PBXGroup;
+			children = (
+				9C6068211EF5308800681583 /* LazyTableView.swift */,
+				9C6068221EF5308800681583 /* LazyTableView_Cell.swift */,
+				9C6068241EF5308800681583 /* LazyTableView_Model.swift */,
+				9C6068231EF5308800681583 /* LazyTableView_Default_Data.swift */,
+			);
+			path = LazyTable;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -146,6 +166,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C6068101EF52E9900681583 /* ViewController.swift in Sources */,
+				9C6068281EF5308800681583 /* LazyTableView_Model.swift in Sources */,
+				9C6068261EF5308800681583 /* LazyTableView_Cell.swift in Sources */,
+				9C6068251EF5308800681583 /* LazyTableView.swift in Sources */,
+				9C6068271EF5308800681583 /* LazyTableView_Default_Data.swift in Sources */,
 				9C60680E1EF52E9900681583 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +336,7 @@
 				9C60681E1EF52E9900681583 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

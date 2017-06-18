@@ -10,5 +10,8 @@ import UIKit
 
 class LazyTableView_HeaderFooter: LazyTableView_Cell {
 
+    override func deploy(model: LazyTableView_Item_Protocol) {
+        update(model: model)
+    }
     
 }

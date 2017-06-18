@@ -12,6 +12,22 @@ extension LazyTableView_Model {
     
     class func default_model() -> LazyTableView_Model {
         return LazyTableView_Model(
+            headers: [
+                LazyTableView_Item(
+                    identifier: LazyTableView.header_identifier,
+                    datas: [
+                        320: "Developer 0",
+                    ]
+                ),
+            ],
+            footers: [
+                LazyTableView_Item(
+                    identifier: LazyTableView.footer_identifier,
+                    datas: [
+                        320: "Developer 0",
+                    ]
+                ),
+            ],
             items: [
                 [
                     LazyTableView_Item(

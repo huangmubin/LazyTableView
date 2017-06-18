@@ -42,6 +42,8 @@ protocol LazyTableView_Item_Protocol {
 
 protocol LazyTableView_Model_Protocol {
     var items: [[LazyTableView_Item_Protocol]] { get set }
+    var headers: [LazyTableView_Item_Protocol] { get set }
+    var footers: [LazyTableView_Item_Protocol] { get set }
     
 }
 
@@ -61,6 +63,24 @@ extension LazyTableView_Model_Protocol {
         return items[at.section][at.row]
     }
     
+    func headers(at: Int) -> LazyTableView_Item_Protocol? {
+        if at < headers.count {
+            return headers[at]
+        }
+        else {
+            return nil
+        }
+    }
+    
+    func footers(at: Int) -> LazyTableView_Item_Protocol? {
+        if at < footers.count {
+            return footers[at]
+        }
+        else {
+            return nil
+        }
+    }
+    
 }
 
 // MARK: - LazyTableView_Model
@@ -74,9 +94,7 @@ class LazyTableView_Item: LazyTableView_Item_Protocol {
     
     var datas: [Int: Any] = [:]
     
-    init() {
-        
-    }
+    init() { }
     
     init(identifier: String, segue: String? = nil, datas: [Int: Any]) {
         self.identifier = identifier
@@ -89,12 +107,14 @@ class LazyTableView_Item: LazyTableView_Item_Protocol {
 class LazyTableView_Model: LazyTableView_Model_Protocol {
     
     var items: [[LazyTableView_Item_Protocol]] = []
+    var headers: [LazyTableView_Item_Protocol] = []
+    var footers: [LazyTableView_Item_Protocol] = []
     
-    init() {
-        
-    }
+    init() { }
     
-    init(items: [[LazyTableView_Item_Protocol]]) {
+    init(headers: [LazyTableView_Item_Protocol] = [], footers: [LazyTableView_Item_Protocol] = [], items: [[LazyTableView_Item_Protocol]]) {
+        self.headers = headers
+        self.footers = footers
         self.items = items
     }
     

@@ -35,21 +35,26 @@ class LazyTableView: UITableView {
     private func deploy() {
         self.register(
             LazyTableView_Cell.self,
-            forCellReuseIdentifier: "LazyTableView_Cell_Default"
+            forCellReuseIdentifier: LazyTableView.cell_identifier
         )
         self.register(
-            LazyTableView_Cell.self,
-            forCellReuseIdentifier: "LazyTableView_Header_Default"
+            LazyTableView_HeaderFooter.self,
+            forCellReuseIdentifier: LazyTableView.header_identifier
         )
         self.register(
-            LazyTableView_Cell.self,
-            forCellReuseIdentifier: "LazyTableView_Footer_Default"
+            LazyTableView_HeaderFooter.self,
+            forCellReuseIdentifier: LazyTableView.footer_identifier
         )
         self.dataSource = self
         self.delegate   = self
     }
     
     // MARK: - Data
+    
+    static let cell_identifier = "LazyTableView_Cell_Default"
+    static let header_identifier = "LazyTableView_Header_Default"
+    static let footer_identifier = "LazyTableView_Footer_Default"
+    static let cell_no_segue = "no_segue_identifier"
     
     var model: LazyTableView_Model_Protocol?
     func get(item: IndexPath) -> LazyTableView_Item_Protocol? {
@@ -84,28 +89,22 @@ extension LazyTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard var item = model?.items(at: indexPath) else {
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: "LazyTableView_Cell_Default",
-                for: indexPath)
-            return cell
-        }
-        
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: item.identifier,
+            withIdentifier: model?.items(at: indexPath).identifier ?? LazyTableView.cell_identifier,
             for: indexPath
         ) as! LazyTableView_Cell
-        
-        item.indexPath = indexPath
-        if cell.row_height != -1 {
-            item.height = cell.row_height
-        }
-        if cell.segue_identifier != "no_segue_identifier" && item.segue == nil {
-            item.segue = cell.segue_identifier
-        }
-        
         cell.tableview = self
-        cell.deploy(model: item)
+        
+        if var item = model?.items(at: indexPath) {
+            item.indexPath = indexPath
+            if cell.row_height != -1 {
+                item.height = cell.row_height
+            }
+            if cell.segue_identifier != LazyTableView.cell_no_segue && item.segue == nil {
+                item.segue = cell.segue_identifier
+            }
+            cell.deploy(model: item)
+        }
         
         lazy_delegate?.lazy?(
             tableview: self,
@@ -128,15 +127,45 @@ extension LazyTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.red
+        let view: LazyTableView_HeaderFooter = tableView.dequeueReusableCell(
+            withIdentifier: model?.headers(at: section)?.identifier ?? LazyTableView.header_identifier
+        ) as! LazyTableView_HeaderFooter
+        view.backgroundColor = header_color
+        
+        if let item = model?.headers(at: section) {
+            view.deploy(model: item)
+        }
+        
         return view
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let view = view as? LazyTableView_HeaderFooter,
+            let item = model?.headers(at: section) {
+            view.backgroundColor = header_color
+            view.update(model: item)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.yellow
+        let view: LazyTableView_HeaderFooter = tableView.dequeueReusableCell(
+            withIdentifier: model?.footers(at: section)?.identifier ?? LazyTableView.footer_identifier
+        ) as! LazyTableView_HeaderFooter
+        view.backgroundColor = footer_color
+        
+        if let item = model?.footers(at: section) {
+            view.deploy(model: item)
+        }
+        
         return view
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        if let view = view as? LazyTableView_HeaderFooter,
+            let item = model?.footers(at: section) {
+            view.backgroundColor = footer_color
+            view.update(model: item)
+        }
     }
 }
 
@@ -149,11 +178,11 @@ extension LazyTableView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.header_height
+        return model?.headers(at: section)?.height ?? header_height
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return self.footer_height
+        return model?.footers(at: section)?.height ??  footer_height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

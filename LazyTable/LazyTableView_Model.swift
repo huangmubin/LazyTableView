@@ -78,8 +78,9 @@ class LazyTableView_Item: LazyTableView_Item_Protocol {
         
     }
     
-    init(identifier: String, datas: [Int: Any]) {
+    init(identifier: String, segue: String? = nil, datas: [Int: Any]) {
         self.identifier = identifier
+        self.segue = segue
         self.datas = datas
     }
     
@@ -97,19 +98,5 @@ class LazyTableView_Model: LazyTableView_Model_Protocol {
         self.items = items
     }
     
-    class func Model() -> LazyTableView_Model {
-        let model = LazyTableView_Model()
-        for sec in 0 ..< 1 {
-            var item_rows = [LazyTableView_Item_Protocol]()
-            for row in 0 ..< 1 {
-                let item = LazyTableView_Item()
-                item.identifier = "Cell1"
-                item.datas = lazy_datas[sec][row]
-                item_rows.append(item)
-            }
-            model.items.append(item_rows)
-        }
-        return model
-    }
 }
 

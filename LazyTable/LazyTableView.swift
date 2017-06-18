@@ -13,6 +13,7 @@ import UIKit
 @objc protocol LazyTableView_Delegate_Protocol {
     @objc optional func lazy(tableview: LazyTableView, load cell: LazyTableView_Cell, at indexPath: IndexPath)
     @objc optional func lazy(tableview: LazyTableView, display cell: LazyTableView_Cell, at indexPath: IndexPath)
+    @objc optional func lazy(tableview: LazyTableView, didSelect cell: LazyTableView_Cell, at indexPath: IndexPath)
 }
 
 // MARK: - Lazy Table View
@@ -36,6 +37,14 @@ class LazyTableView: UITableView {
             LazyTableView_Cell.self,
             forCellReuseIdentifier: "LazyTableView_Cell_Default"
         )
+        self.register(
+            LazyTableView_Cell.self,
+            forCellReuseIdentifier: "LazyTableView_Header_Default"
+        )
+        self.register(
+            LazyTableView_Cell.self,
+            forCellReuseIdentifier: "LazyTableView_Footer_Default"
+        )
         self.dataSource = self
         self.delegate   = self
     }
@@ -51,6 +60,15 @@ class LazyTableView: UITableView {
     var lazy_delegate: LazyTableView_Delegate_Protocol? {
         return delegate_link as? LazyTableView_Delegate_Protocol
     }
+    
+    // MARK: Header Footer
+    
+    @IBInspectable var header_height: CGFloat = 0
+    @IBInspectable var header_color: UIColor  = UIColor.clear
+    
+    @IBInspectable var footer_height: CGFloat = 0
+    @IBInspectable var footer_color: UIColor  = UIColor.clear
+    
 }
 
 // MARK: - UITableView DataSource
@@ -82,7 +100,7 @@ extension LazyTableView: UITableViewDataSource {
         if cell.row_height != -1 {
             item.height = cell.row_height
         }
-        if cell.segue_identifier != "no_segue_identifier" {
+        if cell.segue_identifier != "no_segue_identifier" && item.segue == nil {
             item.segue = cell.segue_identifier
         }
         
@@ -109,6 +127,17 @@ extension LazyTableView: UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.red
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.yellow
+        return view
+    }
 }
 
 // MARK: - UITableView Delegate
@@ -117,6 +146,40 @@ extension LazyTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return model?.items(at: indexPath).height ?? tableView.rowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.header_height
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return self.footer_height
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let item = model?.items(at: indexPath) {
+            if let segue = item.segue {
+                controller()?.performSegue(withIdentifier: segue, sender: item)
+            }
+        }
+    }
+    
+}
+
+// MARK: - Tools
+
+extension LazyTableView {
+
+    /** 获取 View 所在 UIViewController */
+    func controller() -> UIViewController? {
+        var next: UIView? = superview
+        while next != nil {
+            if next?.next?.isKind(of: UIViewController.self) == true {
+                return next?.next as? UIViewController
+            }
+            next = next?.superview
+        }
+        return nil
     }
     
 }

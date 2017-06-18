@@ -22,10 +22,8 @@ class LazyTableView_Cell: UITableViewCell {
             self.isUserInteractionEnabled = visible
             self.contentView.alpha = visible ? 1 : 0.5
         }
-    
         
         for subview in contentView.subviews {
-            print("subview tag = \(subview.tag)")
             if subview.tag > 309 && subview.tag < 400 {
                 if let view = subview as? UILabel {
                     if let text = model.get(tag: view.tag) as? String {

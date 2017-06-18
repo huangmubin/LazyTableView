@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C429FF01EF67BCD0031E65C /* LazyTableView_HeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C429FEF1EF67BCC0031E65C /* LazyTableView_HeaderFooter.swift */; };
 		9C60680E1EF52E9900681583 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C60680D1EF52E9900681583 /* AppDelegate.swift */; };
 		9C6068101EF52E9900681583 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C60680F1EF52E9900681583 /* ViewController.swift */; };
 		9C6068131EF52E9900681583 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6068111EF52E9900681583 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C429FEF1EF67BCC0031E65C /* LazyTableView_HeaderFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyTableView_HeaderFooter.swift; sourceTree = "<group>"; };
 		9C60680A1EF52E9900681583 /* LazyTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C60680D1EF52E9900681583 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C60680F1EF52E9900681583 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				9C6068211EF5308800681583 /* LazyTableView.swift */,
 				9C6068221EF5308800681583 /* LazyTableView_Cell.swift */,
+				9C429FEF1EF67BCC0031E65C /* LazyTableView_HeaderFooter.swift */,
 				9C6068241EF5308800681583 /* LazyTableView_Model.swift */,
 				9C6068231EF5308800681583 /* LazyTableView_Default_Data.swift */,
 			);
@@ -167,6 +170,7 @@
 			files = (
 				9C6068101EF52E9900681583 /* ViewController.swift in Sources */,
 				9C6068281EF5308800681583 /* LazyTableView_Model.swift in Sources */,
+				9C429FF01EF67BCD0031E65C /* LazyTableView_HeaderFooter.swift in Sources */,
 				9C6068261EF5308800681583 /* LazyTableView_Cell.swift in Sources */,
 				9C6068251EF5308800681583 /* LazyTableView.swift in Sources */,
 				9C6068271EF5308800681583 /* LazyTableView_Default_Data.swift in Sources */,

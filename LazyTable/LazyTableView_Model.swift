@@ -14,6 +14,7 @@ import UIKit
 /**
  [
     301: Bool, 是否可选状态
+    302: CGFloat, Cell 高度
     ...
  
     310: String UIImage name, 图标0
@@ -100,8 +101,18 @@ class LazyTableView_Item: LazyTableView_Item_Protocol {
         self.identifier = identifier
         self.segue = segue
         self.datas = datas
+        default_check()
     }
     
+    func default_check() {
+        // 302: CGFloat, Cell 高度
+        if let value = datas[302] as? CGFloat {
+            self.height = value
+        }
+        else if let value = datas[302] as? Int {
+            self.height = CGFloat(value)
+        }
+    }
 }
 
 class LazyTableView_Model: LazyTableView_Model_Protocol {
@@ -120,3 +131,38 @@ class LazyTableView_Model: LazyTableView_Model_Protocol {
     
 }
 
+class LazyModel {
+    
+    var header: LazyTableView_Item_Protocol?
+    var footer: LazyTableView_Item_Protocol?
+    var items: [LazyTableView_Item_Protocol] = []
+    
+    init(header: LazyTableView_Item_Protocol? = nil, footer: LazyTableView_Item_Protocol?, items: [LazyTableView_Item_Protocol]) {
+        self.header = header
+        self.footer = footer
+        self.items  = items
+    }
+    
+    class func model(_ models: LazyModel ...) -> LazyTableView_Model {
+        let lazy_model = LazyTableView_Model()
+        for model in models {
+            lazy_model.headers.append(
+                model.header ?? LazyTableView_Item(
+                    identifier: LazyTableView.header_identifier,
+                    datas: [:]
+                )
+            )
+            
+            lazy_model.footers.append(
+                model.footer ?? LazyTableView_Item(
+                    identifier: LazyTableView.footer_identifier,
+                    datas: [:]
+                )
+            )
+            
+            lazy_model.items.append(model.items)
+        }
+        return lazy_model
+    }
+    
+}

@@ -133,7 +133,10 @@ extension LazyTableView: UITableViewDataSource {
         ) as! LazyTableView_HeaderFooter
         view.backgroundColor = header_color
         
-        if let item = model?.headers(at: section) {
+        if var item = model?.headers(at: section) {
+            if view.row_height != -1 && item.height == nil {
+                item.height = view.row_height
+            }
             view.deploy(model: item)
         }
         
@@ -154,7 +157,10 @@ extension LazyTableView: UITableViewDataSource {
         ) as! LazyTableView_HeaderFooter
         view.backgroundColor = footer_color
         
-        if let item = model?.footers(at: section) {
+        if var item = model?.footers(at: section) {
+            if view.row_height != -1 && item.height == nil {
+                item.height = view.row_height
+            }
             view.deploy(model: item)
         }
         
@@ -183,7 +189,8 @@ extension LazyTableView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return model?.footers(at: section)?.height ??  footer_height
+        print("heightForFooterInSection \(String(describing: model?.footers(at: section)?.height)) : \(footer_height)")
+        return model?.footers(at: section)?.height ?? footer_height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

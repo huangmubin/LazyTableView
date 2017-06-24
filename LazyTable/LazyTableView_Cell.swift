@@ -16,6 +16,11 @@ class LazyTableView_Cell: UITableViewCell {
     @IBInspectable var segue_identifier: String = LazyTableView.cell_no_segue
     
     weak var tableview: LazyTableView?
+    var index: IndexPath!
+    
+    var layer_top: CAShapeLayer = CAShapeLayer()
+    var layer_center: CAShapeLayer = CAShapeLayer()
+    var layer_bottom: CAShapeLayer = CAShapeLayer()
     
     func deploy(model: LazyTableView_Item_Protocol) {
         if model.identifier == LazyTableView.cell_identifier
@@ -29,6 +34,8 @@ class LazyTableView_Cell: UITableViewCell {
     }
     
     func update(model: LazyTableView_Item_Protocol) {
+        select_layers()
+        
         if let visible = model.get(tag: 301) as? Bool {
             self.isUserInteractionEnabled = visible
             self.contentView.alpha = visible ? 1 : 0.5
@@ -40,9 +47,14 @@ class LazyTableView_Cell: UITableViewCell {
         
         for subview in contentView.subviews {
             if subview.tag > 309 && subview.tag < 400 {
+                let tag_suffix = subview.tag % 10
+                
                 if let view = subview as? UILabel {
                     if let text = model.get(tag: view.tag) as? String {
                         view.text = text
+                    }
+                    if let font = model.get(tag: 340 + tag_suffix) as? UIFont {
+                        view.font = font
                     }
                 }
                 else if let view = subview as? UIImageView {
@@ -54,6 +66,12 @@ class LazyTableView_Cell: UITableViewCell {
                     }
                 }
                 else if let view = subview as? UISwitch {
+                    view.addTarget(
+                        self, 
+                        action: #selector(subview_actions(_:)),
+                        for: .valueChanged
+                    )
+                    
                     if let bool = model.get(tag: view.tag) as? Bool {
                         view.isOn = bool
                     }
@@ -69,6 +87,191 @@ class LazyTableView_Cell: UITableViewCell {
                         view.isOn = number == 1
                     }
                 }
+                else if let view = subview as? UIButton {
+                    view.addTarget(
+                        self,
+                        action: #selector(subview_actions(_:)),
+                        for: .touchUpInside
+                    )
+                    if let name = model.get(tag: 310 + tag_suffix) as? String {
+                        view.setImage(UIImage(named: name), for: .normal)
+                    }
+                    if let text = model.get(tag: 320 + tag_suffix) as? String {
+                        view.setTitle(text, for: .normal)
+                    }
+                    if let font = model.get(tag: 340 + tag_suffix) as? UIFont {
+                        view.titleLabel?.font = font
+                    }
+                }
+            }
+        }
+    }
+    
+    func subview_actions(_ sender: UIView) {
+        tableview?.lazy_tableView(
+            cell: self,
+            view_Action: sender,
+            at: index
+        )
+    }
+    
+    override var frame: CGRect {
+        didSet {
+            update_layers()
+        }
+    }
+    override var bounds: CGRect {
+        didSet {
+            update_layers()
+        }
+    }
+    
+}
+
+extension LazyTableView_Cell {
+    
+    func select_layers() {
+        layer_top.removeFromSuperlayer()
+        layer_center.removeFromSuperlayer()
+        layer_bottom.removeFromSuperlayer()
+        
+        if let count = tableview?.model?.items[index.section].count {
+            if count == 1 {
+                layer.addSublayer(layer_center)
+            }
+            else if index.row == 0 {
+                layer.addSublayer(layer_top)
+            }
+            else if index.row == count - 1 {
+                layer.addSublayer(layer_bottom)
+            }
+        }
+    }
+    
+    func update_layers() {
+        if let corner = tableview?.section_corner,
+           let color = tableview?.backgroundColor?.cgColor {
+            if corner != 0 {
+                let x_l: CGFloat = 0
+                let x_c: CGFloat = bounds.width / 2
+                let x_r: CGFloat = bounds.width
+                let y_t: CGFloat = 0
+                let y_b: CGFloat = bounds.height
+                let x_p1: CGFloat = corner
+                let x_p2: CGFloat = bounds.width - corner
+                let y_p1: CGFloat = corner
+                let y_p2: CGFloat = bounds.height - corner
+                
+                let _ = {
+                    let path = UIBezierPath()
+                    path.move(to: CGPoint(x: x_c, y: y_t))
+                    path.addLine(to: CGPoint(x: x_l, y: y_t))
+                    path.addLine(to: CGPoint(x: x_l, y: y_b))
+                    path.addLine(to: CGPoint(x: x_r, y: y_b))
+                    path.addLine(to: CGPoint(x: x_r, y: y_t))
+                    path.addLine(to: CGPoint(x: x_c, y: y_t))
+                    
+                    path.addLine(to: CGPoint(x: x_p2, y: y_t))
+                    path.addArc(
+                        withCenter: CGPoint(x: x_p2, y: y_p1),
+                        radius: corner,
+                        startAngle: CGFloat.pi * 1.5,
+                        endAngle: CGFloat.pi * 0,
+                        clockwise: true
+                    )
+                    path.addLine(to: CGPoint(x: x_r, y: y_b))
+                    path.addLine(to: CGPoint(x: x_l, y: y_b))
+                    path.addLine(to: CGPoint(x: x_l, y: y_p1))
+                    path.addArc(
+                        withCenter: CGPoint(x: x_p1, y: y_p1),
+                        radius: corner,
+                        startAngle: CGFloat.pi * 1,
+                        endAngle: CGFloat.pi * 1.5,
+                        clockwise: true
+                    )
+                    path.addLine(to: CGPoint(x: x_c, y: y_t))
+                    
+                    layer_top.path = path.cgPath
+                    layer_top.fillColor = color
+                }()
+                let _ = {
+                    let path = UIBezierPath()
+                    path.move(to: CGPoint(x: x_c, y: y_t))
+                    path.addLine(to: CGPoint(x: x_l, y: y_t))
+                    path.addLine(to: CGPoint(x: x_l, y: y_b))
+                    path.addLine(to: CGPoint(x: x_r, y: y_b))
+                    path.addLine(to: CGPoint(x: x_r, y: y_t))
+                    path.addLine(to: CGPoint(x: x_c, y: y_t))
+                    
+                    path.addLine(to: CGPoint(x: x_p2, y: y_t))
+                    path.addArc(
+                        withCenter: CGPoint(x: x_p2, y: y_p1),
+                        radius: corner,
+                        startAngle: CGFloat.pi * 1.5,
+                        endAngle: CGFloat.pi * 0,
+                        clockwise: true
+                    )
+                    path.addLine(to: CGPoint(x: x_r, y: y_p2))
+                    path.addArc(
+                        withCenter: CGPoint(x: x_p2, y: y_p2),
+                        radius: corner,
+                        startAngle: CGFloat.pi * 0,
+                        endAngle: CGFloat.pi * 0.5,
+                        clockwise: true
+                    )
+                    path.addLine(to: CGPoint(x: x_p1, y: y_b))
+                    path.addArc(
+                        withCenter: CGPoint(x: x_p1, y: y_p2),
+                        radius: corner,
+                        startAngle: CGFloat.pi * 0.5,
+                        endAngle: CGFloat.pi * 1,
+                        clockwise: true
+                    )
+                    path.addLine(to: CGPoint(x: x_l, y: y_p1))
+                    path.addArc(
+                        withCenter: CGPoint(x: x_p1, y: y_p1),
+                        radius: corner,
+                        startAngle: CGFloat.pi * 1,
+                        endAngle: CGFloat.pi * 1.5,
+                        clockwise: true
+                    )
+                    path.addLine(to: CGPoint(x: x_c, y: y_t))
+                    
+                    layer_center.path = path.cgPath
+                    layer_center.fillColor = color
+                }()
+                let _ = {
+                    let path = UIBezierPath()
+                    path.move(to: CGPoint(x: x_c, y: y_t))
+                    path.addLine(to: CGPoint(x: x_l, y: y_t))
+                    path.addLine(to: CGPoint(x: x_l, y: y_b))
+                    path.addLine(to: CGPoint(x: x_r, y: y_b))
+                    path.addLine(to: CGPoint(x: x_r, y: y_t))
+                    path.addLine(to: CGPoint(x: x_c, y: y_t))
+                    
+                    path.addLine(to: CGPoint(x: x_r, y: y_t))
+                    path.addLine(to: CGPoint(x: x_r, y: y_p2))
+                    path.addArc(
+                        withCenter: CGPoint(x: x_p2, y: y_p2),
+                        radius: corner,
+                        startAngle: CGFloat.pi * 0,
+                        endAngle: CGFloat.pi * 0.5,
+                        clockwise: true
+                    )
+                    path.addLine(to: CGPoint(x: x_p1, y: y_b))
+                    path.addArc(
+                        withCenter: CGPoint(x: x_p1, y: y_p2),
+                        radius: corner,
+                        startAngle: CGFloat.pi * 0.5,
+                        endAngle: CGFloat.pi * 1,
+                        clockwise: true
+                    )
+                    path.addLine(to: CGPoint(x: x_l, y: y_t))
+                    path.addLine(to: CGPoint(x: x_c, y: y_t))
+                    
+                    layer_bottom.path = path.cgPath
+                    layer_bottom.fillColor = color
+                }()
             }
         }
     }

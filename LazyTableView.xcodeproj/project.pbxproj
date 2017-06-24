@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C2A76741EF91D7200621F4B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2A76731EF91D7200621F4B /* TestView.swift */; };
 		9C429FF01EF67BCD0031E65C /* LazyTableView_HeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C429FEF1EF67BCC0031E65C /* LazyTableView_HeaderFooter.swift */; };
 		9C60680E1EF52E9900681583 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C60680D1EF52E9900681583 /* AppDelegate.swift */; };
 		9C6068101EF52E9900681583 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C60680F1EF52E9900681583 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C2A76731EF91D7200621F4B /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		9C429FEF1EF67BCC0031E65C /* LazyTableView_HeaderFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyTableView_HeaderFooter.swift; sourceTree = "<group>"; };
 		9C60680A1EF52E9900681583 /* LazyTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LazyTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C60680D1EF52E9900681583 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				9C60681F1EF52EAA00681583 /* Project */,
 				9C6068201EF5308800681583 /* LazyTable */,
 				9C60680F1EF52E9900681583 /* ViewController.swift */,
+				9C2A76731EF91D7200621F4B /* TestView.swift */,
 				9C6068111EF52E9900681583 /* Main.storyboard */,
 			);
 			path = LazyTableView;
@@ -172,6 +175,7 @@
 				9C6068281EF5308800681583 /* LazyTableView_Model.swift in Sources */,
 				9C429FF01EF67BCD0031E65C /* LazyTableView_HeaderFooter.swift in Sources */,
 				9C6068261EF5308800681583 /* LazyTableView_Cell.swift in Sources */,
+				9C2A76741EF91D7200621F4B /* TestView.swift in Sources */,
 				9C6068251EF5308800681583 /* LazyTableView.swift in Sources */,
 				9C6068271EF5308800681583 /* LazyTableView_Default_Data.swift in Sources */,
 				9C60680E1EF52E9900681583 /* AppDelegate.swift in Sources */,
@@ -301,6 +305,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9X2EVZ736U;
 				INFOPLIST_FILE = LazyTableView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myron.LazyTableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -314,6 +319,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9X2EVZ736U;
 				INFOPLIST_FILE = LazyTableView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myron.LazyTableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";

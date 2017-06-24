@@ -24,3 +24,22 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: LazyTableView_Delegate_Protocol {
+    
+    func lazy(tableview: LazyTableView, load cell: LazyTableView_Cell, at indexPath: IndexPath) {
+        
+    }
+    
+    func lazy(tableview: LazyTableView, display cell: LazyTableView_Cell, at indexPath: IndexPath) {
+        
+    }
+    
+    func lazy(tableview: LazyTableView, didSelected cell: LazyTableView_Cell, at indexPath: IndexPath) {
+        print("Lazy TableView did Selected Cell at \(indexPath)")
+    }
+    
+    func lazy(tableview: LazyTableView, cell: LazyTableView_Cell, viewAction view: UIView, at indexPath: IndexPath) {
+        print("Lazy TableView View tag \(view.tag) Action Cell at \(indexPath)")
+    }
+    
+}

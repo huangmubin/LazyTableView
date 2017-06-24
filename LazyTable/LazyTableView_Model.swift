@@ -28,9 +28,12 @@ import UIKit
     330: Bool, 按钮选项
     ...
  
-    340: Int
+    340: UIFont, 字体
  
-    350: CGFloat, 小数
+    350: Int
+ 
+    360: CGFloat
+ 
  ]
  */
 protocol LazyTableView_Item_Protocol {

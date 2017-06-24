@@ -11,7 +11,17 @@ import UIKit
 
 
 extension LazyTableView_Model {
-    
+    /*
+    301: Bool, 是否可选状态
+    302: CGFloat, Cell 高度
+    ...
+    310: String - UIImage name, 图标
+    320: String - Title text 标签
+    330: Bool - Switch value 按钮选项
+    340: UIFont - Button or title Font 字体
+    350: Int
+    360: CGFloat
+    */
     class func default_model() -> LazyTableView_Model {
         return LazyModel.model(
             LazyModel(
@@ -55,7 +65,7 @@ extension LazyTableView_Model {
                 header: LazyTableView_Item(
                     identifier: LazyTableView.header_identifier,
                     datas: [
-                        320: "Custom Section 1",
+                        320: "Default Section 1",
                         ]
                 ),
                 footer: nil,
@@ -80,145 +90,93 @@ extension LazyTableView_Model {
                         ]
                     )
                 ]
+            ),
+            LazyModel(
+                header: LazyTableView_Item(
+                    identifier: LazyTableView.header_identifier,
+                    datas: [
+                        320: "Default Section 2",
+                        ]
+                ),
+                footer: nil,
+                items: [
+                    LazyTableView_Item(
+                        identifier: "LazyTableView_Cell_1",
+                        segue: nil,
+                        datas: [
+                            310: "image1",
+                            320: "Default Cell",
+                            321: "Status"
+                        ]
+                    ),
+                    LazyTableView_Item(
+                        identifier: "LazyTableView_Cell_1",
+                        segue: nil,
+                        datas: [
+                            301: false,
+                            310: "image2",
+                            320: "Default Cell",
+                            321: "Status"
+                        ]
+                    )
+                ]
+            ),
+            LazyModel(
+                header: LazyTableView_Item(
+                    identifier: LazyTableView.header_identifier,
+                    datas: [
+                        320: "Default Section 3",
+                        ]
+                ),
+                footer: nil,
+                items: [
+                    LazyTableView_Item(
+                        identifier: "LazyTableView_Cell_2",
+                        segue: nil,
+                        datas: [
+                            310: "image1",
+                            320: "Default Cell",
+                            330: false,
+                        ]
+                    ),
+                    LazyTableView_Item(
+                        identifier: "LazyTableView_Cell_2",
+                        segue: nil,
+                        datas: [
+                            301: false,
+                            310: "image2",
+                            320: "Default Cell",
+                            330: true,
+                        ]
+                    )
+                ]
+            ),
+            LazyModel(
+                header: LazyTableView_Item(
+                    identifier: LazyTableView.header_identifier,
+                    datas: [
+                        320: "Default Section 4",
+                        ]
+                ),
+                footer: nil,
+                items: [
+                    LazyTableView_Item(
+                        identifier: "LazyTableView_Cell_3",
+                        segue: nil,
+                        datas: [
+                            340: "Default Button",
+                            ]
+                    ),
+                    LazyTableView_Item(
+                        identifier: "LazyTableView_Cell_3",
+                        segue: nil,
+                        datas: [
+                            340: "Default Button"
+                            ]
+                    )
+                ]
             )
         )
     }
-    
-//    class func default_model() -> LazyTableView_Model {
-//        return LazyTableView_Model(
-//            headers: [
-//                LazyTableView_Item(
-//                    identifier: LazyTableView.header_identifier,
-//                    datas: [
-//                        320: "Developer 0",
-//                        ]
-//                ),
-//                LazyTableView_Item(
-//                    identifier: LazyTableView.header_identifier,
-//                    datas: [
-//                        320: "Developer 0",
-//                        ]
-//                ),
-//                LazyTableView_Item(
-//                    identifier: LazyTableView.header_identifier,
-//                    datas: [
-//                        320: "Developer 2",
-//                        ]
-//                ),
-//            ],
-//            footers: [
-//                LazyTableView_Item(
-//                    identifier: LazyTableView.footer_identifier,
-//                    datas: [
-//                        320: "Developer 0",
-//                        ]
-//                ),
-//                LazyTableView_Item(
-//                    identifier: LazyTableView.footer_identifier,
-//                    datas: [
-//                        320: "Developer 1",
-//                        ]
-//                ),
-//                LazyTableView_Item(
-//                    identifier: LazyTableView.header_identifier,
-//                    datas: [
-//                        320: "Developer 2",
-//                        ]
-//                ),
-//            ],
-//            items: [
-//                [
-//                    LazyTableView_Item(
-//                        identifier: LazyTableView.cell_identifier,
-//                        segue: nil,
-//                        datas: [
-//                            310: "image1",
-//                            320: "Default 0",
-//                            321: "Status"
-//                        ]
-//                    ),
-//                    LazyTableView_Item(
-//                        identifier: LazyTableView.cell_identifier,
-//                        segue: nil,
-//                        datas: [
-//                            310: "image2",
-//                            320: "Default 1",
-//                            321: "Status"
-//                        ]
-//                    ),
-//                    LazyTableView_Item(
-//                        identifier: LazyTableView.cell_identifier,
-//                        segue: nil,
-//                        datas: [
-//                            301: false,
-//                            310: "image3",
-//                            320: "Default 2",
-//                            321: "Status"
-//                        ]
-//                    ),
-//                ],
-//                [
-//                    LazyTableView_Item(
-//                        identifier: "LazyTableView_Cell_0",
-//                        segue: nil,
-//                        datas: [
-//                            310: "image1",
-//                            320: "Developer 0",
-//                            321: "App, Lazy Table View, Model, Data, Others ..."
-//                        ]
-//                    ),
-//                    LazyTableView_Item(
-//                        identifier: "LazyTableView_Cell_0",
-//                        segue: "LazyTableView_Cell_1",
-//                        datas: [
-//                            310: "image2",
-//                            320: "Developer 1",
-//                            321: "App, Lazy Table View, Model, Data, Others ..."
-//                        ]
-//                    ),
-//                    LazyTableView_Item(
-//                        identifier: "LazyTableView_Cell_0",
-//                        segue: "LazyTableView_Cell_1",
-//                        datas: [
-//                            301: false,
-//                            310: "image3",
-//                            320: "Developer 2",
-//                            321: "App, Lazy Table View, Model, Data, Others ..."
-//                        ]
-//                    ),
-//                ],
-//                [
-//                    LazyTableView_Item(
-//                        identifier: "LazyTableView_Cell_1",
-//                        segue: nil,
-//                        datas: [
-//                            310: "image1",
-//                            320: "Set 0",
-//                            321: "开启"
-//                        ]
-//                    ),
-//                    LazyTableView_Item(
-//                        identifier: "LazyTableView_Cell_1",
-//                        segue: nil,
-//                        datas: [
-//                            310: "image2",
-//                            320: "Set 1",
-//                            321: "开启"
-//                        ]
-//                    ),
-//                    LazyTableView_Item(
-//                        identifier: "LazyTableView_Cell_1",
-//                        segue: nil,
-//                        datas: [
-//                            301: false,
-//                            310: "image3",
-//                            320: "Set 2",
-//                            321: "开启"
-//                        ]
-//                    ),
-//                ],
-//            ]
-//        )
-//    }
     
 }

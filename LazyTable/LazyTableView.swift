@@ -10,14 +10,36 @@ import UIKit
 
 // MARK: - Delegate
 
+/** LazyTableView_Delegate_Protocol */
 @objc protocol LazyTableView_Delegate_Protocol {
+    
+    /** 
+     Cell when `func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell` is cell and the default operator is end. 
+     */
     @objc optional func lazy(tableview: LazyTableView, load cell: LazyTableView_Cell, at indexPath: IndexPath)
+    /**
+     Cell when `func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)` is cell and the default operator is end.
+     */
     @objc optional func lazy(tableview: LazyTableView, display cell: LazyTableView_Cell, at indexPath: IndexPath)
-    @objc optional func lazy(tableview: LazyTableView, didSelect cell: LazyTableView_Cell, at indexPath: IndexPath)
+    
+    /**
+     Cell when `func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath), forRowAt indexPath: IndexPath)` is cell and the item's segue is nill.
+     */
+    @objc optional func lazy(tableview: LazyTableView, didSelected cell: LazyTableView_Cell, at indexPath: IndexPath)
+    
+    /**
+     Cell when cell's subview is trigger it's action.
+     */
+    @objc optional func lazy(tableview: LazyTableView, cell: LazyTableView_Cell, viewAction view: UIView, at indexPath: IndexPath)
+    
 }
 
 // MARK: - Lazy Table View
 
+/**
+ Lazy TableView.
+ 
+ */
 class LazyTableView: UITableView {
     
     // MARK: - Init
@@ -74,6 +96,10 @@ class LazyTableView: UITableView {
     @IBInspectable var footer_height: CGFloat = 0
     @IBInspectable var footer_color: UIColor  = UIColor.clear
     
+    // MARK: Section
+    
+    @IBInspectable var section_corner: CGFloat = 0
+    
 }
 
 // MARK: - UITableView DataSource
@@ -94,6 +120,7 @@ extension LazyTableView: UITableViewDataSource {
             for: indexPath
         ) as! LazyTableView_Cell
         cell.tableview = self
+        cell.index = indexPath
         
         if var item = model?.items(at: indexPath) {
             item.indexPath = indexPath
@@ -188,16 +215,34 @@ extension LazyTableView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        print("heightForFooterInSection \(String(describing: model?.footers(at: section)?.height)) : \(footer_height)")
         return model?.footers(at: section)?.height ?? footer_height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let item = model?.items(at: indexPath) {
+        if let item = model?.items(at: indexPath),
+            let cell = tableView.cellForRow(at: indexPath) as? LazyTableView_Cell {
             if let segue = item.segue {
                 controller()?.performSegue(withIdentifier: segue, sender: item)
             }
+            else {
+                lazy_delegate?.lazy?(
+                    tableview: self,
+                    didSelected: cell,
+                    at: indexPath
+                )
+            }
         }
+    }
+    
+    func lazy_tableView(cell: LazyTableView_Cell, view_Action view: UIView, at indexPath: IndexPath) {
+        lazy_delegate?.lazy?(
+            tableview: self,
+            cell: cell,
+            viewAction: view,
+            at: indexPath
+        )
+//        if let item = model?.items(at: indexPath) {
+//        }
     }
     
 }

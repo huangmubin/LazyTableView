@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Delegate link-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="LazyTableView" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,7 +26,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UpN-dA-aoO" customClass="LazyTableView" customModule="LazyTableView" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LazyTableView_Cell_0" rowHeight="80" id="L0q-US-T7x" customClass="LazyTableView_Cell" customModule="LazyTableView" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
@@ -80,19 +80,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image1" translatesAutoresizingMaskIntoConstraints="NO" id="59f-GD-KaH">
+                                                <imageView userInteractionEnabled="NO" tag="310" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image1" translatesAutoresizingMaskIntoConstraints="NO" id="59f-GD-KaH">
                                                     <rect key="frame" x="20" y="8" width="33" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="59f-GD-KaH" secondAttribute="height" multiplier="1:1" id="Rkh-Az-CKP"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name text 320" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8Z-bO-Gw6">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="320" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name text 320" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8Z-bO-Gw6">
                                                     <rect key="frame" x="73" y="14" width="114" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail text 321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-FA-mJY">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="321" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detail text 321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-FA-mJY">
                                                     <rect key="frame" x="226" y="14" width="108" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -113,8 +113,62 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="row_height">
                                                 <real key="value" value="50"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="segue_identifier" value="LazyTableView_Cell_0"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="segue_identifier" value="LazyTableView_Cell_1"/>
                                         </userDefinedRuntimeAttributes>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LazyTableView_Cell_2" id="1co-qo-lJP" customClass="LazyTableView_Cell" customModule="LazyTableView" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="158" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1co-qo-lJP" id="Dvl-JM-FjK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="310" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image1" translatesAutoresizingMaskIntoConstraints="NO" id="mfs-76-y5H">
+                                                    <rect key="frame" x="20" y="8" width="33" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="mfs-76-y5H" secondAttribute="height" multiplier="1:1" id="gKt-cN-6eM"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="320" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name text 320" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBU-Sc-0Pl">
+                                                    <rect key="frame" x="73" y="14" width="114" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" tag="330" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vqe-dm-zcG">
+                                                    <rect key="frame" x="318" y="9" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mfs-76-y5H" firstAttribute="top" secondItem="Dvl-JM-FjK" secondAttribute="top" constant="8" id="0TD-tv-zhM"/>
+                                                <constraint firstItem="gBU-Sc-0Pl" firstAttribute="centerY" secondItem="Dvl-JM-FjK" secondAttribute="centerY" id="2ac-IU-Apq"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vqe-dm-zcG" secondAttribute="trailing" constant="8" id="82x-sS-bIq"/>
+                                                <constraint firstItem="mfs-76-y5H" firstAttribute="leading" secondItem="Dvl-JM-FjK" secondAttribute="leading" constant="20" id="9yd-5Q-1ih"/>
+                                                <constraint firstItem="mfs-76-y5H" firstAttribute="centerY" secondItem="Dvl-JM-FjK" secondAttribute="centerY" id="SPI-DW-8Y4"/>
+                                                <constraint firstItem="gBU-Sc-0Pl" firstAttribute="leading" secondItem="mfs-76-y5H" secondAttribute="trailing" constant="20" id="glo-eX-CXk"/>
+                                                <constraint firstItem="Vqe-dm-zcG" firstAttribute="centerY" secondItem="Dvl-JM-FjK" secondAttribute="centerY" id="xjC-pB-COS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LazyTableView_Cell_3" id="wwz-Oo-9iU" customClass="LazyTableView_Cell" customModule="LazyTableView" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="208" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wwz-Oo-9iU" id="GF4-t3-wMX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="340" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Soj-qf-IUk">
+                                                    <rect key="frame" x="20" y="8" width="335" height="34"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Soj-qf-IUk" firstAttribute="leading" secondItem="GF4-t3-wMX" secondAttribute="leading" constant="20" id="AwL-Vm-p2B"/>
+                                                <constraint firstItem="Soj-qf-IUk" firstAttribute="centerY" secondItem="GF4-t3-wMX" secondAttribute="centerY" id="UVH-bu-wFx"/>
+                                                <constraint firstItem="Soj-qf-IUk" firstAttribute="top" secondItem="GF4-t3-wMX" secondAttribute="top" constant="8" id="byy-Eu-CKh"/>
+                                                <constraint firstItem="Soj-qf-IUk" firstAttribute="centerX" secondItem="GF4-t3-wMX" secondAttribute="centerX" id="h9S-5x-EbO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
@@ -127,7 +181,13 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="header_color">
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="section_corner">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate_link" destination="BYZ-38-t0r" id="dvD-DC-cex"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -143,6 +203,7 @@
                         <outlet property="tableView" destination="UpN-dA-aoO" id="gTV-Pn-uDB"/>
                         <segue destination="jSi-a2-Ih0" kind="show" identifier="LazyTableView_Cell_0" id="4wB-hB-VpZ"/>
                         <segue destination="hEY-yn-8Ex" kind="show" identifier="LazyTableView_Cell_1" id="eEC-bW-WiC"/>
+                        <segue destination="UuL-VE-dHx" kind="show" identifier="LazyTableView_Cell_2" id="3Lf-i9-VSs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nx6-Dk-H0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1874" y="43"/>
+            <point key="canvasLocation" x="1873" y="43"/>
         </scene>
         <!--LazyTableViewCell 1-->
         <scene sceneID="Fho-FC-eV8">
@@ -186,6 +247,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5iO-9q-ZBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1873" y="128"/>
+        </scene>
+        <!--LazyTableViewCell 2-->
+        <scene sceneID="H3E-dv-Djc">
+            <objects>
+                <viewController id="UuL-VE-dHx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SKX-Xn-EFp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vqd-Jp-YwI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zx5-gl-4ng">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="LazyTableViewCell 2" id="tqc-DW-7x9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pqh-Zu-7Io" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1873" y="215"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uul-mg-63s">

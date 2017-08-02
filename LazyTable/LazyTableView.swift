@@ -242,8 +242,6 @@ extension LazyTableView: UITableViewDelegate {
             viewAction: view,
             at: indexPath
         )
-//        if let item = model?.items(at: indexPath) {
-//        }
     }
     
 }
@@ -253,7 +251,7 @@ extension LazyTableView: UITableViewDelegate {
 extension LazyTableView {
 
     /** 获取 View 所在 UIViewController */
-    func controller() -> UIViewController? {
+    override func controller() -> UIViewController? {
         var next: UIView? = superview
         while next != nil {
             if next?.next?.isKind(of: UIViewController.self) == true {

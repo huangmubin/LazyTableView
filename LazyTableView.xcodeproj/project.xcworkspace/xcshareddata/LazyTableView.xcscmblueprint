@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6976E656B173FF511AE236DAF9FC5507FF2B831B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6976E656B173FF511AE236DAF9FC5507FF2B831B" : 9223372036854775807,
+    "CDA96E9391D4B08BE8D5740DD9BC3E7824ECF1C8" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3A746494-1C46-470F-854C-123D757AB022",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6976E656B173FF511AE236DAF9FC5507FF2B831B" : "LazyTableView\/",
+    "CDA96E9391D4B08BE8D5740DD9BC3E7824ECF1C8" : "ModalView\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LazyTableView",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LazyTableView.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:huangmubin\/LazyTableView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6976E656B173FF511AE236DAF9FC5507FF2B831B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:huangmubin\/ModalView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CDA96E9391D4B08BE8D5740DD9BC3E7824ECF1C8"
+    }
+  ]
+}

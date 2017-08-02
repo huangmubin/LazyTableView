@@ -14,6 +14,13 @@ class LazyTableView_Cell: UITableViewCell {
 
     @IBInspectable var row_height: CGFloat = -1
     @IBInspectable var segue_identifier: String = LazyTableView.cell_no_segue
+    @IBInspectable var layout_image_bottom_size: CGFloat = -8 {
+        didSet {
+            layout_image_bottom.constant = layout_image_bottom_size
+        }
+    }
+    
+    @IBOutlet var layout_image_bottom: NSLayoutConstraint!
     
     weak var tableview: LazyTableView?
     var index: IndexPath!
@@ -43,6 +50,17 @@ class LazyTableView_Cell: UITableViewCell {
         else {
             self.isUserInteractionEnabled = true
             self.contentView.alpha = 1
+        }
+        
+        if let size = model.get(tag: 303) as? CGFloat {
+            if layout_image_bottom_size != size {
+                layout_image_bottom_size = size
+            }
+        }
+        else {
+            if layout_image_bottom_size != -8 {
+                layout_image_bottom_size = -8
+            }
         }
         
         for subview in contentView.subviews {
@@ -307,8 +325,9 @@ extension LazyTableView_Cell {
                 toItem: self.contentView,
                 attribute: .bottom,
                 multiplier: 1,
-                constant: -8
+                constant: layout_image_bottom_size
             )
+            layout_image_bottom = bottom
             let leading = NSLayoutConstraint(
                 item: image,
                 attribute: .leading,
@@ -332,6 +351,7 @@ extension LazyTableView_Cell {
         
         let _ = {
             label_name.tag = 320
+            label_name.numberOfLines = 0
             contentView.addSubview(label_name)
             label_name.translatesAutoresizingMaskIntoConstraints = false
             let centerY = NSLayoutConstraint(

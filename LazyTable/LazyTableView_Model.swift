@@ -15,6 +15,7 @@ import UIKit
  [
     301: Bool, 是否可选状态
     302: CGFloat, Cell 高度
+    303: CGFloat, Image Bottom 距离 默认 -8
     ...
  
     310: String UIImage name, 图标0
